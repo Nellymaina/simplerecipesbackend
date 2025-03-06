@@ -309,7 +309,7 @@ const addRestaurant = async () => {
     }
   });
 
-  app.listen(5000, console.log("server working on port 5000"))
+  app.listen(PORT, console.log("server working on port 5000"))
 
 
 
