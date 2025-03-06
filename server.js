@@ -14,7 +14,7 @@ const nodemailer = require('nodemailer');
 dotenv.config();
 
 const app = express();
-const PORT =process.env.PORT||5000;
+const PORT =process.env.PORT;
 app.use(express.json(), cors({
   origin: 'https://nellymaina.github.io/simplerecipes',
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
