@@ -87,28 +87,9 @@ const RestaurantSchema=mongoose.Schema(
     
 );
 
+const Restaurant = mongoose.model("Restaurant", RestaurantSchema, "Restaurants");
 
 
-
-
-const Restaurant = mongoose.model("Restaurant", RestaurantSchema);
-
-const addRestaurant = async () => {
-    const restaurant = new Restaurant();
-  
-    try {
-      // Save the restaurant to the database
-      const savedRestaurant = await restaurant.save(
-
-      
-      );
-      console.log("New restaurant added:", savedRestaurant);
-    } catch (error) {
-      console.error("Error adding restaurant:", error);
-    }
-  };
-
-addRestaurant();
 
   const userSchema = new mongoose.Schema({
     name: { type: String, required: true },
