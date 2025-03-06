@@ -94,48 +94,7 @@ const RestaurantSchema=mongoose.Schema(
 const Restaurant = mongoose.model("Restaurant", RestaurantSchema);
 
 const addRestaurant = async () => {
-    const restaurant = new Restaurant({
-        name: "General Tso's Chicken",
-        image:"https://www.themealdb.com/images/media/meals/1529444113.jpg",
-        category: "Chicken",
-        cuisine: "Chinese",
-        ingredients: [
-          { name: "Chicken Breast", "quantity": "1 1/2" },
-          { name: "Plain Flour", "quantity": "3/4 cup" },
-          {name: "Egg", "quantity": "1" },
-          {name: "Starch", "quantity": "2 tbs" },
-          {name: "Baking Powder", "quantity": "1 tbs" },
-          {name: "Salt", "quantity": "1 tsp" },
-          {name: "Onion Salt", "quantity": "1/2 tsp" },
-          {name: "Garlic Powder", "quantity": "1/4 tsp" },
-          {name: "Water", "quantity": "3/4 cup" },
-          {name: "Chicken Stock", "quantity": "1/2 cup" },
-          {name: "Duck Sauce", "quantity": "1/4 cup" },
-          {name: "Soy Sauce", "quantity": "3 tbs" },
-          {name: "Honey", "quantity": "2 tbs" },
-          {name: "Rice Vinegar", "quantity": "1 tbs" },
-          {name: "Sesame Seed Oil", "quantity": "2 tbs" },
-          {name: "Gochujang", "quantity": "1/2 tbs" },
-          {name: "Starch", "quantity": "2 tbs" },
-          {name: "Garlic", "quantity": "1 clove" },
-          {name: "Spring Onions", "quantity": "2 chopped" },
-          {name: "Ginger", "quantity": "1 tsp" },
-
-
-          
-          
-
-],
-        instructions: [
-          { step: 1, description : "In a bowl, add 2 Cups of water, 2 Tablespoon soy sauce, 2 Tablespoon white vinegar, sherry cooking wine, 1/4 Teaspoon white pepper, minced ginger, minced garlic, hot pepper, ketchup, hoisin sauce, and sugar.Mix together well and set aside." },
-          { step: 2, description: "In a bowl, add the chicken, 1 pinch of salt, 1 pinch of white pepper, 2 egg whites, and 3 Tablespoon of corn starch" },
-          { step: 3, description : "Deep fry the chicken at 350 degrees for 3-4 minutes or until it is golden brown and loosen up the chicken so that they don't stick together.Set the chicken aside." },          
-          { step: 4, description : "Add the sauce to the wok and then the broccoli and wait until it is boiling." },          
-          { step: 5, description : "To thicken the sauce, whisk together 2 Tablespoon of cornstarch and 4 Tablespoon of water in a bowl and slowly add to your stir-fry until it's the right thickness." },     
-          { step: 6, description : "Next add in the chicken and stir-fry for a minute and serve on a plate." },          
-     
-        ]
-      });
+    const restaurant = new Restaurant();
   
     try {
       // Save the restaurant to the database
@@ -148,7 +107,8 @@ const addRestaurant = async () => {
       console.error("Error adding restaurant:", error);
     }
   };
-  
+
+addRestaurant();
 
   const userSchema = new mongoose.Schema({
     name: { type: String, required: true },
