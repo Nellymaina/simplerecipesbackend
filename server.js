@@ -87,7 +87,7 @@ const RestaurantSchema=mongoose.Schema(
     
 );
 
-const Restaurant = mongoose.model("Restaurant", RestaurantSchema, "Restaurants");
+const Restaurant = mongoose.model("Restaurant", RestaurantSchema, "restaurants");
 
 
 
