@@ -233,7 +233,7 @@ const addRestaurant = async () => {
       await user.save();
   
       // Send password reset email
-      const resetLink = `http://localhost:3000/reset-password?token=${resetToken}`;
+      const resetLink = `http://nellymaina.github.io/simplerecipes/reset-password?token=${resetToken}`;
       await transporter.sendMail({
         from: process.env.SMTP_USER,
         to: email,
@@ -309,7 +309,7 @@ const addRestaurant = async () => {
     }
   });
 
-  app.listen(PORT, console.log("server working on port 5000"))
+  app.listen(PORT, console.log("server working on port render"))
 
 
 
