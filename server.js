@@ -16,7 +16,7 @@ dotenv.config();
 const app = express();
 const PORT =process.env.PORT;
 app.use(express.json(), cors({
-  origin: 'https://nellymaina.github.io/simplerecipes',
+  origin: 'https://nellymaina.github.io',
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   credentials: true
 }));
