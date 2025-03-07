@@ -136,13 +136,14 @@ const Restaurant = mongoose.model("Restaurant", RestaurantSchema, "restaurants")
       secure: process.env.NODE_ENV === 'production',
       sameSite: 'strict',
       maxAge: 7 * 24 * 60 * 60 * 1000,
+     path:'/'
     });
   
     res.json({ message: 'Login successful' });
   });
   
 
-  app.get('/api/auth', async (req, res) => {
+ app.get('/api/auth', async (req, res) => {
   try {
     const token = req.cookies.token;
     if (!token) return res.status(401).json({ message: 'Not authenticated' });
@@ -154,9 +155,13 @@ const Restaurant = mongoose.model("Restaurant", RestaurantSchema, "restaurants")
 
     res.json({ user });
   } catch (error) {
+    if (error.name === 'TokenExpiredError') {
+      return res.status(401).json({ message: 'Session expired, please log in again' });
+    }
     res.status(401).json({ message: 'Invalid token' });
   }
 });
+
 
   app.post("/api/forgot-password", async (req, res) => {
     try {
