@@ -129,32 +129,33 @@ const Restaurant = mongoose.model("Restaurant", RestaurantSchema, "restaurants")
       return res.status(400).json({ message: 'Invalid credentials' });
     }
   
-    const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: '7h' });
+    const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: '7d' });
   
     res.cookie('token', token, {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
       sameSite: 'strict',
-      maxAge: 60 * 60 * 1000,
+      maxAge: 7 * 24 * 60 * 60 * 1000,
     });
   
     res.json({ message: 'Login successful' });
   });
   
 
-  app.get("/api/me", (req, res) => {
+  app.get('/api/auth', async (req, res) => {
+  try {
     const token = req.cookies.token;
+    if (!token) return res.status(401).json({ message: 'Not authenticated' });
 
-    if (!token) {
-        return res.status(401).json({ message: "Not logged in" });
-    }
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const user = await User.findById(decoded.userId).select('-password');
 
-    try {
-        const decoded = jwt.verify(token, process.env.JWT_SECRET);
-        res.json({ user: { id: decoded.userId } });
-    } catch (error) {
-        return res.status(401).json({ message: "Invalid token" });
-    }
+    if (!user) return res.status(401).json({ message: 'Invalid token' });
+
+    res.json({ user });
+  } catch (error) {
+    res.status(401).json({ message: 'Invalid token' });
+  }
 });
 
   app.post("/api/forgot-password", async (req, res) => {
