@@ -40,7 +40,7 @@ const transporter = nodemailer.createTransport({
 
 async function connectToDb() {
     try {
-      await mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+      await mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true, maxPoolSize:10 });
       console.log("Connected to MongoDB Atlas!");
     } catch (error) {
       console.error("Error connecting to MongoDB Atlas:", error);
