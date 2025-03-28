@@ -14,7 +14,7 @@ This is the **backend service** for my **recipe web application**, built using *
 - **Database:** MongoDB (Mongoose ORM)
 - **Authentication:** JWT, Bcrypt.js
 - **API Handling:** Axios (for external API calls)
-- **Deployment:** Render (or your hosting provider)
+- **Deployment:** render.com
 
 ## 📂 Project Setup
 
